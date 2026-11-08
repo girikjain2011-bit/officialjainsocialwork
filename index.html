@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jain Social Work Ltd. | Rejoining Equality</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sage: {
+              50: '#f4f7f4',
+              100: '#e3eae3',
+              200: '#c8d6c8',
+              600: '#537053',
+              700: '#3e553e',
+              800: '#2d3f2d',
+              900: '#1e2b1e',
+              950: '#121a12',
+            },
+            gold: {
+              400: '#d4af37',
+              500: '#c5a028',
+              600: '#a38118'
+            }
+          },
+          fontFamily: {
+            heading: ['Cinzel', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glow-bg {
+      background: radial-gradient(circle at 50% -10%, rgba(83, 112, 83, 0.12), transparent 60%),
+                  radial-gradient(circle at 90% 60%, rgba(212, 175, 55, 0.08), transparent 50%);
+    }
+
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    summary::-webkit-details-marker { display: none; }
+
+    /* ---------- Animations ---------- */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+    @keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    @keyframes shimmer { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+    @keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgba(212,175,55,.55); } 100% { box-shadow: 0 0 0 16px rgba(212,175,55,0); } }
+    @keyframes popIn { from { opacity: 0; transform: scale(.96) translateY(10px); } to { opacity: 1; transform: none; } }
+
+    .animate-fade-up { opacity: 0; animation: fadeUp .8s cubic-bezier(.2,.7,.2,1) forwards; }
+    .delay-1 { animation-delay: .12s; } .delay-2 { animation-delay: .24s; } .delay-3 { animation-delay: .36s; } .delay-4 { animation-delay: .48s; }
+    .animate-float { animation: floatY 4s ease-in-out infinite; }
+    .animate-pulse-ring { animation: floatY 4s ease-in-out infinite, pulseRing 2.2s ease-out infinite; }
+    .animate-pop { animation: popIn .45s cubic-bezier(.2,.7,.2,1) both; }
+    .text-shimmer {
+      background: linear-gradient(90deg, #1e2b1e 0%, #537053 25%, #c5a028 50%, #537053 75%, #1e2b1e 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .text-shimmer.animate-fade-up { animation: fadeUp .8s cubic-bezier(.2,.7,.2,1) .12s forwards, shimmer 6s linear infinite; }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+    .reveal.is-visible { opacity: 1; transform: none; }
+    .lift { transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease, background-color .3s ease, opacity .7s ease; }
+    .lift:hover { transform: translateY(-6px); }
+    .btn-shine { position: relative; overflow: hidden; }
+    .btn-shine::after {
+      content: ""; position: absolute; top: 0; left: -120%; width: 60%; height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent);
+      transform: skewX(-20deg); transition: left .7s ease; pointer-events: none;
+    }
+    .btn-shine:hover::after { left: 140%; }
+    .footer-link { position: relative; color: #e3eae3; transition: color .25s ease; }
+    .footer-link::after { content: ""; position: absolute; left: 0; bottom: -4px; width: 0; height: 2px; background: #d4af37; transition: width .3s ease; }
+    .footer-link:hover { color: #d4af37; }
+    .footer-link:hover::after { width: 100%; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal, .animate-fade-up { opacity: 1; transform: none; }
+      .text-shimmer { color: #1e2b1e; }
+    }
+  </style>
+</head>
+<body class="bg-sage-50/50 text-slate-800 flex flex-col min-h-screen glow-bg selection:bg-sage-200">
+
+  <header class="sticky top-0 z-50 glass-nav border-b border-sage-200/60 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+      
+      <a href="javascript:void(0)" onclick="switchView('home')" class="flex flex-col group">
+        <span class="font-heading font-bold text-lg sm:text-xl text-sage-900 tracking-wider uppercase leading-none group-hover:text-sage-700 transition-colors">Jain Social Work</span>
+        <span class="text-[10px] font-bold text-gold-600 tracking-widest uppercase mt-1" id="navSubtitle">Rejoining Equality</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 font-semibold text-sage-800 text-sm">
+        <button id="navAboutBtn" onclick="switchView('home', 'about')" class="hover:text-gold-600 transition">About</button>
+        <button id="navServicesBtn" onclick="switchView('home', 'services')" class="hover:text-gold-600 transition">Services</button>
+        <button id="navTermsBtn" onclick="switchView('home', 'terms')" class="hover:text-gold-600 transition">Terms</button>
+        <button id="navContactBtn" onclick="switchView('home', 'contact')" class="hover:text-gold-600 transition">Contact Us</button>
+        
+        <button id="desktopActionBtn" onclick="switchView('appointment')" class="bg-sage-700 hover:bg-sage-800 text-white px-5 py-2.5 rounded-full font-bold transition-all shadow-md shadow-sage-800/20 active:scale-95 flex items-center gap-2">
+          <i class="fa-regular fa-calendar-check text-sm text-gold-400"></i>
+          <span>Book Appointment</span>
+        </button>
+      </nav>
+
+      <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-xl text-sage-900 hover:bg-sage-100 transition focus:outline-none" aria-label="Toggle Menu">
+        <i class="fa-solid fa-bars text-xl" id="menuIcon"></i>
+      </button>
+    </div>
+
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-sage-200 px-6 py-5 space-y-4 shadow-xl">
+      <button onclick="switchView('home', 'about'); toggleMobileMenu();" class="block w-full text-left font-semibold text-sage-800 hover:text-gold-600 py-2 border-b border-sage-100">About</button>
+      <button onclick="switchView('home', 'services'); toggleMobileMenu();" class="block w-full text-left font-semibold text-sage-800 hover:text-gold-600 py-2 border-b border-sage-100">Services</button>
+      <button onclick="switchView('home', 'terms'); toggleMobileMenu();" class="block w-full text-left font-semibold text-sage-800 hover:text-gold-600 py-2 border-b border-sage-100">Terms &amp; Conditions</button>
+      <button onclick="switchView('home', 'contact'); toggleMobileMenu();" class="block w-full text-left font-semibold text-sage-800 hover:text-gold-600 py-2 border-b border-sage-100">Contact Us</button>
+      <button id="mobileActionBtn" onclick="switchView('appointment'); toggleMobileMenu();" class="w-full bg-sage-700 text-white font-bold py-3.5 rounded-xl text-center shadow-lg flex items-center justify-center gap-2">
+        <i class="fa-regular fa-calendar-check text-gold-400"></i>
+        <span>Book Appointment</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="homeView" class="flex-grow">
+    
+    <section class="relative py-12 sm:py-20 md:py-24 px-4 sm:px-6 max-w-7xl mx-auto text-center">
+      <div class="animate-fade-up inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sage-100 text-sage-800 border border-sage-200 font-bold text-xs tracking-wider uppercase mb-6 shadow-sm">
+        <i class="fa-solid fa-quote-left text-gold-500"></i> Small Acts, Ripples Big Changes
+      </div>
+      
+      <h1 class="animate-fade-up text-shimmer font-heading text-3xl sm:text-5xl md:text-6xl font-bold tracking-wide leading-tight max-w-4xl mx-auto uppercase">
+        Jain Social Work Ltd.
+      </h1>
+      <p class="animate-fade-up delay-2 text-xs sm:text-sm font-bold tracking-widest uppercase text-gold-600 mt-2">Rejoining Equality</p>
+      
+      <p class="animate-fade-up delay-3 mt-6 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+        Dedicated social impact specialist on a mission to bridge the gap between healthcare and various consultancy and the community.
+      </p>
+
+      <div class="animate-fade-up delay-4 mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto sm:max-w-none">
+        <button onclick="switchView('appointment')" class="btn-shine w-full sm:w-auto bg-sage-700 hover:bg-sage-800 text-white px-8 py-4 rounded-xl font-bold shadow-lg shadow-sage-800/20 active:scale-95 transition-all flex items-center justify-center gap-3 text-base">
+          <span>Schedule a Meet</span>
+          <i class="fa-solid fa-arrow-right text-sm text-gold-400"></i>
+        </button>
+        <button onclick="scrollToSection('services')" class="w-full sm:w-auto bg-white hover:bg-sage-50 text-sage-900 border border-sage-300 px-8 py-4 rounded-xl font-bold shadow-sm transition-all active:scale-95 text-base">
+          Explore Our Services
+        </button>
+      </div>
+    </section>
+
+    <section id="about" class="py-12 sm:py-16 bg-white border-y border-sage-200/70">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        <div class="reveal bg-sage-50/80 rounded-3xl p-6 sm:p-10 border border-sage-200 shadow-sm text-center md:text-left flex flex-col md:flex-row items-center gap-8">
+          <div class="animate-pulse-ring w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-sage-700 p-1 ring-4 ring-gold-400/70 flex-shrink-0 shadow-lg overflow-hidden">
+            <img src="/.netlify/images?url=/images/eti-jain.jpg&w=400&fm=webp&q=80" onerror="this.onerror=null;this.src='/images/eti-jain.jpg'" alt="Mrs. Eti Jain" width="144" height="144" loading="lazy" class="w-full h-full rounded-full object-cover" style="object-position: 50% 38%;">
+          </div>
+          <div class="space-y-3">
+            <div>
+              <span class="text-gold-600 font-bold text-xs uppercase tracking-widest">Leadership</span>
+              <h2 class="text-2xl sm:text-3xl font-bold text-sage-900">Mrs. Eti Jain</h2>
+              <div class="mt-2 space-y-1">
+                <p class="text-sage-800 font-bold text-sm flex items-center justify-center md:justify-start gap-2">
+                  <i class="fa-solid fa-award text-gold-500"></i> President – Lyness Tejaswini Club
+                </p>
+                <p class="text-sage-800 font-bold text-sm flex items-center justify-center md:justify-start gap-2">
+                  <i class="fa-solid fa-award text-gold-500"></i> President – Bagherwal Digambar Jain Mahila Prakoshth (Malwa Pranth)
+                </p>
+              </div>
+            </div>
+            <div class="pt-3 border-t border-sage-200/80 flex flex-wrap gap-2 justify-center md:justify-start text-xs font-semibold text-slate-600">
+              <span class="bg-white px-3 py-1 rounded-full border border-sage-200"><i class="fa-solid fa-check text-gold-500 mr-1"></i> Vidyanjali Volunteer</span>
+              <span class="bg-white px-3 py-1 rounded-full border border-sage-200"><i class="fa-solid fa-check text-gold-500 mr-1"></i> Volunteer: G.O.I Vidyanjali</span>
+              <span class="bg-white px-3 py-1 rounded-full border border-sage-200"><i class="fa-solid fa-check text-gold-500 mr-1"></i> MY Bharat</span>
+              <span class="bg-white px-3 py-1 rounded-full border border-sage-200"><i class="fa-solid fa-check text-gold-500 mr-1"></i> MyGov</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="reveal text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+        <span class="text-gold-600 font-bold text-xs uppercase tracking-widest">Our Programs</span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-sage-900 mt-1">Key Initiatives & Facilities</h2>
+        <p class="text-slate-600 text-sm sm:text-base mt-2">Setting early detection of future destruction through best qualified teams and community drives.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div class="reveal lift p-6 rounded-3xl bg-white border border-sage-200 hover:border-gold-400 hover:shadow-xl flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-sage-100 flex items-center justify-center text-sage-700 mb-6 text-xl group-hover:bg-sage-700 group-hover:text-gold-400 transition-colors">
+              <i class="fa-solid fa-notes-medical"></i>
+            </div>
+            <h3 class="text-lg font-bold text-sage-900 mb-2">Health Camp</h3>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">Setting up with various health camp facilities for early detection and prevention.</p>
+            <ul class="text-xs text-slate-500 space-y-1.5 mb-6">
+              <li class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-gold-500"></i> Best Qualified Team</li>
+              <li class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-gold-500"></i> Machine Checkup</li>
+            </ul>
+          </div>
+          <button onclick="switchView('appointment')" class="text-sage-700 font-bold text-xs flex items-center gap-1 hover:gap-2 transition-all">
+            <span>Book Health Camp</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>
+          </button>
+        </div>
+
+        <div class="reveal lift p-6 rounded-3xl bg-white border border-sage-200 hover:border-gold-400 hover:shadow-xl flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-sage-100 flex items-center justify-center text-sage-700 mb-6 text-xl group-hover:bg-sage-700 group-hover:text-gold-400 transition-colors">
+              <i class="fa-solid fa-user-doctor"></i>
+            </div>
+            <h3 class="text-lg font-bold text-sage-900 mb-2">Consultancy</h3>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">Setting up with a perfect consulting team of doctors to guide patients effectively.</p>
+            <ul class="text-xs text-slate-500 space-y-1.5 mb-6">
+              <li class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-gold-500"></i> Specialist Doctors</li>
+              <li class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-gold-500"></i> ECG (If Prescribed)</li>
+            </ul>
+          </div>
+          <button onclick="switchView('appointment')" class="text-sage-700 font-bold text-xs flex items-center gap-1 hover:gap-2 transition-all">
+            <span>Request Consultancy</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>
+          </button>
+        </div>
+
+        <div class="reveal lift p-6 rounded-3xl bg-white border border-sage-200 hover:border-gold-400 hover:shadow-xl flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-sage-100 flex items-center justify-center text-sage-700 mb-6 text-xl group-hover:bg-sage-700 group-hover:text-gold-400 transition-colors">
+              <i class="fa-solid fa-chalkboard-user"></i>
+            </div>
+            <h3 class="text-lg font-bold text-sage-900 mb-2">Special Lectures</h3>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">Taking the stage to deliver lectures that empower, educate, and sensitize minds.</p>
+            <ul class="text-xs text-slate-500 space-y-1.5 mb-6">
+              <li class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-gold-500"></i> Customized Topics</li>
+              <li class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-gold-500"></i> Campus & Event Sessions</li>
+            </ul>
+          </div>
+          <button onclick="switchView('appointment')" class="text-sage-700 font-bold text-xs flex items-center gap-1 hover:gap-2 transition-all">
+            <span>Schedule Lecture</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>
+          </button>
+        </div>
+
+        <div class="reveal lift p-6 rounded-3xl bg-white border border-sage-200 hover:border-gold-400 hover:shadow-xl flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-sage-100 flex items-center justify-center text-sage-700 mb-6 text-xl group-hover:bg-sage-700 group-hover:text-gold-400 transition-colors">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h3 class="text-lg font-bold text-sage-900 mb-2">Cyber Security</h3>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">Providing digital knowledge, personal info protection, and safety measures.</p>
+            <ul class="text-xs text-slate-500 space-y-1.5 mb-6">
+              <li class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-gold-500"></i> Info Protection</li>
+              <li class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-gold-500"></i> Safety Measures</li>
+            </ul>
+          </div>
+          <button onclick="switchView('appointment')" class="text-sage-700 font-bold text-xs flex items-center gap-1 hover:gap-2 transition-all">
+            <span>Book Security Drive</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>
+          </button>
+        </div>
+
+        <div class="reveal lift p-6 rounded-3xl bg-white border border-sage-200 hover:border-gold-400 hover:shadow-xl flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-sage-100 flex items-center justify-center text-sage-700 mb-6 text-xl group-hover:bg-sage-700 group-hover:text-gold-400 transition-colors">
+              <i class="fa-solid fa-hand-holding-droplet"></i>
+            </div>
+            <h3 class="text-lg font-bold text-sage-900 mb-2">Blood Donation Camp</h3>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">Organizing blood donation drives that connect willing donors with those in urgent need.</p>
+            <ul class="text-xs text-slate-500 space-y-1.5 mb-6">
+              <li class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-gold-500"></i> Certified Medical Staff</li>
+              <li class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-gold-500"></i> Donor Screening</li>
+            </ul>
+          </div>
+          <button onclick="switchView('appointment')" class="text-sage-700 font-bold text-xs flex items-center gap-1 hover:gap-2 transition-all">
+            <span>Organize Blood Camp</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>
+          </button>
+        </div>
+
+        <div class="reveal lift p-6 rounded-3xl bg-white border border-sage-200 hover:border-gold-400 hover:shadow-xl flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-sage-100 flex items-center justify-center text-sage-700 mb-6 text-xl group-hover:bg-sage-700 group-hover:text-gold-400 transition-colors">
+              <i class="fa-solid fa-hand-fist"></i>
+            </div>
+            <h3 class="text-lg font-bold text-sage-900 mb-2">Self Defense</h3>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">Hands-on training sessions that build practical self defense skills and confidence.</p>
+            <ul class="text-xs text-slate-500 space-y-1.5 mb-6">
+              <li class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-gold-500"></i> Trained Instructors</li>
+              <li class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-gold-500"></i> Practical Drills</li>
+            </ul>
+          </div>
+          <button onclick="switchView('appointment')" class="text-sage-700 font-bold text-xs flex items-center gap-1 hover:gap-2 transition-all">
+            <span>Book Self Defense Session</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <div class="mt-10 text-center">
+        <span class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-sage-100/80 text-sage-900 border border-sage-300/60 font-bold text-xs sm:text-sm tracking-wider uppercase shadow-sm">
+          <i class="fa-solid fa-plus text-gold-600"></i> And Many More Facilities
+        </span>
+      </div>
+    </section>
+
+    <section id="terms" class="py-12 sm:py-20 bg-white border-y border-sage-200/70">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+          <span class="text-gold-600 font-bold text-xs uppercase tracking-widest">Please Read Carefully</span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-sage-900 mt-1">Terms &amp; Conditions</h2>
+          <p class="text-slate-600 text-sm sm:text-base mt-2">By using this website or booking a program with Jain Social Work Ltd., you agree to the following terms.</p>
+        </div>
+
+        <div id="termsList" class="space-y-3">
+          <details class="group rounded-2xl border border-sage-200 bg-sage-50/60 open:bg-white open:shadow-md open:border-gold-400 transition" open>
+            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-5 sm:px-6 py-4 font-bold text-sage-900">
+              <span class="flex items-center gap-3"><span class="w-8 h-8 rounded-xl bg-sage-700 text-gold-400 flex items-center justify-center text-xs flex-shrink-0">01</span> Acceptance of Terms</span>
+              <i class="fa-solid fa-chevron-down text-sage-600 text-sm transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="px-5 sm:px-6 pb-5 text-sm text-slate-600 leading-relaxed sm:pl-[4.25rem]">
+              By accessing this website, submitting an appointment request, or participating in any of our programs, you confirm that you have read, understood, and agreed to these Terms &amp; Conditions. If you do not agree, please do not use our website or services.
+            </div>
+          </details>
+
+          <details class="group rounded-2xl border border-sage-200 bg-sage-50/60 open:bg-white open:shadow-md open:border-gold-400 transition">
+            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-5 sm:px-6 py-4 font-bold text-sage-900">
+              <span class="flex items-center gap-3"><span class="w-8 h-8 rounded-xl bg-sage-700 text-gold-400 flex items-center justify-center text-xs flex-shrink-0">02</span> Appointments &amp; Program Bookings</span>
+              <i class="fa-solid fa-chevron-down text-sage-600 text-sm transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="px-5 sm:px-6 pb-5 text-sm text-slate-600 leading-relaxed sm:pl-[4.25rem]">
+              <ul class="list-disc pl-5 space-y-1.5">
+                <li>Submitting an appointment request does not guarantee a booking. All requests are subject to review and confirmation by our team.</li>
+                <li>Preferred dates and time slots are accommodated wherever possible, but final scheduling depends on the availability of our teams and resources.</li>
+                <li>We may contact you by phone or email to confirm venue, participant count, and other event requirements.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="group rounded-2xl border border-sage-200 bg-sage-50/60 open:bg-white open:shadow-md open:border-gold-400 transition">
+            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-5 sm:px-6 py-4 font-bold text-sage-900">
+              <span class="flex items-center gap-3"><span class="w-8 h-8 rounded-xl bg-sage-700 text-gold-400 flex items-center justify-center text-xs flex-shrink-0">03</span> Cancellations &amp; Rescheduling</span>
+              <i class="fa-solid fa-chevron-down text-sage-600 text-sm transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="px-5 sm:px-6 pb-5 text-sm text-slate-600 leading-relaxed sm:pl-[4.25rem]">
+              Please inform us as early as possible if you need to cancel or reschedule a confirmed program. Jain Social Work Ltd. reserves the right to reschedule or cancel a program due to unforeseen circumstances, safety concerns, or events beyond our control, and will make reasonable efforts to notify you in advance.
+            </div>
+          </details>
+
+          <details class="group rounded-2xl border border-sage-200 bg-sage-50/60 open:bg-white open:shadow-md open:border-gold-400 transition">
+            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-5 sm:px-6 py-4 font-bold text-sage-900">
+              <span class="flex items-center gap-3"><span class="w-8 h-8 rounded-xl bg-sage-700 text-gold-400 flex items-center justify-center text-xs flex-shrink-0">04</span> Health &amp; Medical Disclaimer</span>
+              <i class="fa-solid fa-chevron-down text-sage-600 text-sm transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="px-5 sm:px-6 pb-5 text-sm text-slate-600 leading-relaxed sm:pl-[4.25rem]">
+              Health camps, blood donation drives, and awareness sessions are intended for screening, education, and community support only. They are not a substitute for professional medical diagnosis or treatment. Participants should consult a qualified healthcare provider for any medical concerns. Blood donation is subject to eligibility criteria determined by the attending medical professionals.
+            </div>
+          </details>
+
+          <details class="group rounded-2xl border border-sage-200 bg-sage-50/60 open:bg-white open:shadow-md open:border-gold-400 transition">
+            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-5 sm:px-6 py-4 font-bold text-sage-900">
+              <span class="flex items-center gap-3"><span class="w-8 h-8 rounded-xl bg-sage-700 text-gold-400 flex items-center justify-center text-xs flex-shrink-0">05</span> Participant Conduct &amp; Safety</span>
+              <i class="fa-solid fa-chevron-down text-sage-600 text-sm transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="px-5 sm:px-6 pb-5 text-sm text-slate-600 leading-relaxed sm:pl-[4.25rem]">
+              Participants are expected to follow the instructions of our volunteers and trainers, especially during self-defense and physical activity sessions. Participation in such activities is voluntary and at the participant's own risk. We reserve the right to refuse or discontinue participation for anyone whose conduct is unsafe, disruptive, or disrespectful.
+            </div>
+          </details>
+
+          <details class="group rounded-2xl border border-sage-200 bg-sage-50/60 open:bg-white open:shadow-md open:border-gold-400 transition">
+            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-5 sm:px-6 py-4 font-bold text-sage-900">
+              <span class="flex items-center gap-3"><span class="w-8 h-8 rounded-xl bg-sage-700 text-gold-400 flex items-center justify-center text-xs flex-shrink-0">06</span> Privacy &amp; Use of Information</span>
+              <i class="fa-solid fa-chevron-down text-sage-600 text-sm transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="px-5 sm:px-6 pb-5 text-sm text-slate-600 leading-relaxed sm:pl-[4.25rem]">
+              Personal details shared through our appointment form (such as name, mobile number, and email) are used only to process your request and communicate with you about our programs. We do not sell or share your information with third parties except where required by law. Photographs or videos taken during public programs may be used for awareness and reporting purposes; please inform our team if you do not wish to be photographed.
+            </div>
+          </details>
+
+          <details class="group rounded-2xl border border-sage-200 bg-sage-50/60 open:bg-white open:shadow-md open:border-gold-400 transition">
+            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-5 sm:px-6 py-4 font-bold text-sage-900">
+              <span class="flex items-center gap-3"><span class="w-8 h-8 rounded-xl bg-sage-700 text-gold-400 flex items-center justify-center text-xs flex-shrink-0">07</span> Limitation of Liability</span>
+              <i class="fa-solid fa-chevron-down text-sage-600 text-sm transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="px-5 sm:px-6 pb-5 text-sm text-slate-600 leading-relaxed sm:pl-[4.25rem]">
+              While we take every reasonable care in organizing our programs, Jain Social Work Ltd., its members, and volunteers shall not be liable for any loss, injury, or damage arising from participation in programs or reliance on information provided on this website, to the extent permitted by law.
+            </div>
+          </details>
+
+          <details class="group rounded-2xl border border-sage-200 bg-sage-50/60 open:bg-white open:shadow-md open:border-gold-400 transition">
+            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-5 sm:px-6 py-4 font-bold text-sage-900">
+              <span class="flex items-center gap-3"><span class="w-8 h-8 rounded-xl bg-sage-700 text-gold-400 flex items-center justify-center text-xs flex-shrink-0">08</span> Changes &amp; Governing Law</span>
+              <i class="fa-solid fa-chevron-down text-sage-600 text-sm transition-transform group-open:rotate-180"></i>
+            </summary>
+            <div class="px-5 sm:px-6 pb-5 text-sm text-slate-600 leading-relaxed sm:pl-[4.25rem]">
+              We may update these Terms &amp; Conditions from time to time, and changes take effect once published on this page. These terms are governed by the laws of India, and any disputes shall be subject to the jurisdiction of the courts in Indore, Madhya Pradesh.
+            </div>
+          </details>
+        </div>
+
+        <p class="text-center text-xs text-slate-500 mt-8">
+          Last updated: <span id="termsUpdated">November 2026</span> &middot; Questions? Write to us at <span class="font-semibold text-sage-800">jainsocialwork@gmail.com</span>
+        </p>
+      </div>
+    </section>
+
+    <section id="contact" class="py-12 sm:py-16 bg-sage-900 text-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center max-w-xl mx-auto mb-10">
+          <span class="text-gold-400 font-bold text-xs uppercase tracking-widest">Get In Touch</span>
+          <h2 class="text-2xl sm:text-3xl font-bold mt-1">Contact Us For Programs</h2>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+          <div class="reveal lift p-6 rounded-2xl bg-sage-800/60 border border-sage-700 hover:border-gold-400 hover:bg-sage-800">
+            <i class="fa-solid fa-phone text-gold-400 text-2xl mb-3"></i>
+            <h4 class="text-xs text-slate-400 uppercase font-bold tracking-wider mb-1">Query Mobile Number</h4>
+            <p class="text-base font-bold text-white">72250 95082</p>
+          </div>
+
+          <div class="reveal lift p-6 rounded-2xl bg-sage-800/60 border border-sage-700 hover:border-gold-400 hover:bg-sage-800">
+            <i class="fa-solid fa-phone-flip text-gold-400 text-2xl mb-3"></i>
+            <h4 class="text-xs text-slate-400 uppercase font-bold tracking-wider mb-1">Landline Number</h4>
+            <p class="text-base font-bold text-white">0731-3583747</p>
+          </div>
+
+          <div class="reveal lift p-6 rounded-2xl bg-sage-800/60 border border-sage-700 hover:border-gold-400 hover:bg-sage-800">
+            <i class="fa-solid fa-envelope text-gold-400 text-2xl mb-3"></i>
+            <h4 class="text-xs text-slate-400 uppercase font-bold tracking-wider mb-1">Email Address</h4>
+            <p class="text-sm font-bold text-white">jainsocialwork@gmail.com</p>
+          </div>
+
+          <div class="reveal lift p-6 rounded-2xl bg-sage-800/60 border border-sage-700 hover:border-gold-400 hover:bg-sage-800">
+            <i class="fa-solid fa-location-dot text-gold-400 text-2xl mb-3"></i>
+            <h4 class="text-xs text-slate-400 uppercase font-bold tracking-wider mb-1">Location</h4>
+            <p class="text-base font-bold text-white">Indore, Madhya Pradesh</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <main id="appointmentView" class="hidden flex-grow py-8 sm:py-12 px-4 sm:px-6 max-w-3xl mx-auto w-full my-auto">
+    <div class="animate-pop bg-white rounded-3xl p-6 sm:p-10 shadow-xl shadow-sage-900/5 border border-sage-200">
+      
+      <div class="text-center mb-8">
+        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sage-100 text-sage-800 border border-sage-200 font-bold text-xs tracking-wide uppercase mb-3">
+          <i class="fa-regular fa-clock text-gold-600"></i> Quick Scheduling
+        </span>
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-sage-900">Schedule a Meet</h1>
+        <p class="text-slate-600 text-xs sm:text-sm mt-2">Connect directly with Jain Social Work Ltd. for health camps, lectures, and consultancy.</p>
+      </div>
+
+      <div id="successBanner" class="hidden animate-pop mb-6 p-4 bg-emerald-50 border border-emerald-200 rounded-2xl text-emerald-800 text-sm flex items-center gap-3">
+        <i class="fa-solid fa-circle-check text-emerald-600 text-xl flex-shrink-0"></i>
+        <div>
+          <p class="font-bold">Appointment Request Submitted!</p>
+          <p class="text-emerald-700 text-xs mt-0.5">We will review your details and contact you shortly.</p>
+        </div>
+      </div>
+
+      <div id="errorBanner" class="hidden mb-6 p-4 bg-red-50 border border-red-200 rounded-2xl text-red-800 text-sm flex items-center gap-3">
+        <i class="fa-solid fa-circle-exclamation text-red-600 text-xl flex-shrink-0"></i>
+        <p id="errorText" class="font-semibold">Something went wrong. Please try again.</p>
+      </div>
+
+      <form id="appointmentForm" name="appointment" onsubmit="handleFormSubmit(event)" class="space-y-4 sm:space-y-6">
+        <p class="hidden">
+          <label>Don't fill this out if you're human: <input name="bot-field"></label>
+        </p>
+        <div class="grid sm:grid-cols-2 gap-4 sm:gap-6">
+          <div>
+            <label class="block text-xs font-bold text-sage-800 uppercase tracking-wider mb-2">Full Name <span class="text-red-500">*</span></label>
+            <input type="text" name="name" required placeholder="Your Name" class="w-full px-4 py-3 rounded-xl border border-sage-200 focus:outline-none focus:border-sage-700 focus:ring-1 focus:ring-sage-700 transition text-sm bg-sage-50/30">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-sage-800 uppercase tracking-wider mb-2">Mobile Number <span class="text-red-500">*</span></label>
+            <input type="tel" id="mobileInput" name="mobile" required placeholder="00000 00000" maxlength="11" oninput="formatPhoneNumber(this)" pattern="^[0-9]{5}\s[0-9]{5}$" title="Please enter a valid 10-digit mobile number in format: 00000 00000" class="w-full px-4 py-3 rounded-xl border border-sage-200 focus:outline-none focus:border-sage-700 focus:ring-1 focus:ring-sage-700 transition text-sm bg-sage-50/30">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-sage-800 uppercase tracking-wider mb-2">Email Address <span class="text-red-500">*</span></label>
+          <input type="email" name="email" required placeholder="example@gmail.com" class="w-full px-4 py-3 rounded-xl border border-sage-200 focus:outline-none focus:border-sage-700 focus:ring-1 focus:ring-sage-700 transition text-sm bg-sage-50/30">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-sage-800 uppercase tracking-wider mb-2">Purpose of Program <span class="text-red-500">*</span></label>
+          <select required name="purpose" id="purposeSelect" onchange="toggleOtherPurpose(this)" class="w-full px-4 py-3 rounded-xl border border-sage-200 focus:outline-none focus:border-sage-700 focus:ring-1 focus:ring-sage-700 transition text-sm bg-sage-50/30">
+            <option value="">Select an option...</option>
+            <option value="health">Health Camp</option>
+            <option value="talkshow">Talk Show</option>
+            <option value="blood">Blood Donation Camp</option>
+            <option value="cyber">Cyber Awareness</option>
+            <option value="selfdefense">Self Defense</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div id="otherPurposeGroup" class="hidden">
+          <label class="block text-xs font-bold text-sage-800 uppercase tracking-wider mb-2">Please Specify The Program You Require <span class="text-red-500">*</span></label>
+          <input type="text" id="otherPurposeInput" name="otherPurpose" placeholder="Tell us which other program you require" class="w-full px-4 py-3 rounded-xl border border-sage-200 focus:outline-none focus:border-sage-700 focus:ring-1 focus:ring-sage-700 transition text-sm bg-sage-50/30">
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4 sm:gap-6">
+          <div>
+            <label class="block text-xs font-bold text-sage-800 uppercase tracking-wider mb-2">Preferred Date <span class="text-red-500">*</span></label>
+            <input type="date" name="date" required class="w-full px-4 py-3 rounded-xl border border-sage-200 focus:outline-none focus:border-sage-700 focus:ring-1 focus:ring-sage-700 transition text-sm bg-sage-50/30">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-sage-800 uppercase tracking-wider mb-2">Preferred Time <span class="text-red-500">*</span></label>
+            <select required name="time" class="w-full px-4 py-3 rounded-xl border border-sage-200 focus:outline-none focus:border-sage-700 focus:ring-1 focus:ring-sage-700 transition text-sm bg-sage-50/30">
+              <option value="">Select time slot...</option>
+              <option value="morning">Morning Slot</option>
+              <option value="afternoon">Afternoon Slot</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-sage-800 uppercase tracking-wider mb-2">Additional Details</label>
+          <textarea rows="3" name="details" placeholder="Specify your venue or event requirements..." class="w-full px-4 py-3 rounded-xl border border-sage-200 focus:outline-none focus:border-sage-700 focus:ring-1 focus:ring-sage-700 transition text-sm bg-sage-50/30"></textarea>
+        </div>
+
+        <label class="flex items-start gap-3 text-sm text-slate-600 cursor-pointer">
+          <input type="checkbox" name="terms" value="accepted" required class="mt-0.5 w-4 h-4 rounded border-sage-300 accent-sage-700 flex-shrink-0">
+          <span>I have read and agree to the <button type="button" onclick="switchView('home', 'terms')" class="font-bold text-sage-800 underline decoration-gold-400 underline-offset-2 hover:text-gold-600">Terms &amp; Conditions</button>. <span class="text-red-500">*</span></span>
+        </label>
+
+        <button type="submit" id="submitBtn" class="btn-shine w-full bg-sage-700 hover:bg-sage-800 disabled:opacity-60 text-white font-bold py-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 text-base">
+          <i class="fa-solid fa-paper-plane text-gold-400 text-sm"></i>
+          <span>Submit Appointment Request</span>
+        </button>
+      </form>
+
+    </div>
+  </main>
+
+  <main id="adminView" class="hidden flex-grow py-8 sm:py-12 px-4 sm:px-6 max-w-7xl mx-auto w-full">
+
+    <!-- Login -->
+    <div id="adminLogin" class="animate-pop max-w-md mx-auto bg-white rounded-3xl p-6 sm:p-10 shadow-xl shadow-sage-900/5 border border-sage-200">
+      <div class="text-center mb-8">
+        <div class="w-16 h-16 mx-auto rounded-2xl bg-sage-700 text-gold-400 flex items-center justify-center text-2xl mb-4 shadow-md animate-float">
+          <i class="fa-solid fa-user-shield"></i>
+        </div>
+        <h1 class="text-2xl font-extrabold text-sage-900">Admin Access</h1>
+        <p class="text-slate-600 text-xs sm:text-sm mt-2">Sign in to manage appointments and Terms &amp; Conditions.</p>
+      </div>
+      <div id="loginError" class="hidden mb-4 p-3 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm font-semibold"></div>
+      <form id="adminLoginForm" onsubmit="adminLogin(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-sage-800 uppercase tracking-wider mb-2">Email ID</label>
+          <input type="email" name="email" required autocomplete="username" placeholder="Admin email" class="w-full px-4 py-3 rounded-xl border border-sage-200 focus:outline-none focus:border-sage-700 focus:ring-1 focus:ring-sage-700 transition text-sm bg-sage-50/30">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-sage-800 uppercase tracking-wider mb-2">Passcode</label>
+          <input type="password" name="passcode" required inputmode="numeric" autocomplete="current-password" placeholder="••••" class="w-full px-4 py-3 rounded-xl border border-sage-200 focus:outline-none focus:border-sage-700 focus:ring-1 focus:ring-sage-700 transition text-sm bg-sage-50/30 tracking-[0.4em]">
+        </div>
+        <button type="submit" id="loginBtn" class="btn-shine w-full bg-sage-700 hover:bg-sage-800 disabled:opacity-60 text-white font-bold py-3.5 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
+          <i class="fa-solid fa-right-to-bracket text-gold-400 text-sm"></i> <span>Sign In</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="adminDashboard" class="hidden animate-pop">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+        <div>
+          <span class="text-gold-600 font-bold text-xs uppercase tracking-widest">Admin Dashboard</span>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-sage-900">Welcome back</h1>
+        </div>
+        <button onclick="adminLogout()" class="self-start sm:self-auto bg-white hover:bg-red-50 text-red-700 border border-red-200 px-4 py-2 rounded-full font-bold text-sm transition flex items-center gap-2">
+          <i class="fa-solid fa-right-from-bracket"></i> Sign Out
+        </button>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div class="lift p-5 rounded-2xl bg-white border border-sage-200"><p class="text-xs font-bold uppercase tracking-wider text-slate-500">Total</p><p id="statTotal" class="text-3xl font-extrabold text-sage-900 mt-1">0</p></div>
+        <div class="lift p-5 rounded-2xl bg-amber-50 border border-amber-200"><p class="text-xs font-bold uppercase tracking-wider text-amber-700">Pending</p><p id="statPending" class="text-3xl font-extrabold text-amber-800 mt-1">0</p></div>
+        <div class="lift p-5 rounded-2xl bg-emerald-50 border border-emerald-200"><p class="text-xs font-bold uppercase tracking-wider text-emerald-700">Confirmed</p><p id="statConfirmed" class="text-3xl font-extrabold text-emerald-800 mt-1">0</p></div>
+        <div class="lift p-5 rounded-2xl bg-sky-50 border border-sky-200"><p class="text-xs font-bold uppercase tracking-wider text-sky-700">Completed</p><p id="statCompleted" class="text-3xl font-extrabold text-sky-800 mt-1">0</p></div>
+      </div>
+
+      <div class="inline-flex p-1 rounded-full bg-sage-100 border border-sage-200 mb-6">
+        <button id="tabAppointments" onclick="showAdminTab('appointments')" class="px-5 py-2 rounded-full text-sm font-bold transition">Appointments</button>
+        <button id="tabTerms" onclick="showAdminTab('terms')" class="px-5 py-2 rounded-full text-sm font-bold transition">Terms &amp; Conditions</button>
+      </div>
+
+      <!-- Appointments panel -->
+      <section id="panelAppointments" class="bg-white rounded-3xl border border-sage-200 shadow-sm p-4 sm:p-6">
+        <div class="flex flex-col md:flex-row gap-3 mb-5">
+          <div class="relative flex-grow">
+            <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+            <input id="apptSearch" oninput="renderAppointments()" type="search" placeholder="Search by name, email, mobile or program..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-sage-200 focus:outline-none focus:border-sage-700 text-sm">
+          </div>
+          <select id="apptStatusFilter" onchange="renderAppointments()" class="px-4 py-2.5 rounded-xl border border-sage-200 text-sm font-semibold text-sage-800">
+            <option value="all">All statuses</option>
+            <option value="pending">Pending</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="completed">Completed</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+          <select id="apptSort" onchange="renderAppointments()" class="px-4 py-2.5 rounded-xl border border-sage-200 text-sm font-semibold text-sage-800">
+            <option value="az">Name A–Z</option>
+            <option value="za">Name Z–A</option>
+            <option value="newest">Newest request first</option>
+            <option value="oldest">Oldest request first</option>
+            <option value="date">Preferred date (soonest)</option>
+          </select>
+          <button onclick="loadAppointments()" class="px-4 py-2.5 rounded-xl bg-sage-100 hover:bg-sage-200 text-sage-900 font-bold text-sm transition" title="Refresh"><i class="fa-solid fa-rotate"></i></button>
+        </div>
+        <div id="apptList" class="space-y-3"></div>
+      </section>
+
+      <!-- Terms panel -->
+      <section id="panelTerms" class="hidden bg-white rounded-3xl border border-sage-200 shadow-sm p-4 sm:p-6">
+        <form id="termForm" onsubmit="saveTerm(event)" class="p-4 sm:p-5 rounded-2xl bg-sage-50 border border-sage-200 mb-6 space-y-3">
+          <input type="hidden" name="termId">
+          <p id="termFormTitle" class="text-sm font-extrabold text-sage-900 uppercase tracking-wider"><i class="fa-solid fa-plus text-gold-600 mr-1"></i> Add a New Term</p>
+          <input name="termTitle" required maxlength="200" placeholder="Heading (e.g. Refund Policy)" class="w-full px-4 py-2.5 rounded-xl border border-sage-200 focus:outline-none focus:border-sage-700 text-sm bg-white">
+          <textarea name="termBody" required rows="4" maxlength="5000" placeholder="Write the term's content..." class="w-full px-4 py-2.5 rounded-xl border border-sage-200 focus:outline-none focus:border-sage-700 text-sm bg-white"></textarea>
+          <div class="flex gap-2">
+            <button type="submit" class="btn-shine bg-sage-700 hover:bg-sage-800 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition"><i class="fa-solid fa-floppy-disk text-gold-400 mr-1"></i> <span id="termSubmitLabel">Add Term</span></button>
+            <button type="button" id="termCancelBtn" onclick="resetTermForm()" class="hidden bg-white border border-sage-200 text-sage-800 font-bold px-5 py-2.5 rounded-xl text-sm">Cancel</button>
+          </div>
+        </form>
+        <div id="adminTermsList" class="space-y-3"></div>
+      </section>
+    </div>
+
+    <div id="adminToast" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-sage-900 text-white px-5 py-3 rounded-full shadow-2xl text-sm font-semibold animate-pop"></div>
+  </main>
+
+  <footer class="bg-sage-950 text-sage-100 pt-12 pb-8 px-4 sm:px-6 border-t-4 border-gold-500">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-sage-700">
+      <div class="flex flex-col items-center md:items-start">
+        <span class="font-heading text-lg font-bold text-white tracking-wider uppercase">Jain Social Work Ltd.</span>
+        <span class="text-[11px] font-bold tracking-widest uppercase text-gold-400 mt-1">Rejoining Equality</span>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-sm font-semibold">
+        <button onclick="switchView('home')" class="footer-link">Home</button>
+        <button onclick="switchView('home', 'services')" class="footer-link">Services</button>
+        <button onclick="switchView('appointment')" class="footer-link">Book Appointment</button>
+        <button onclick="switchView('home', 'terms')" class="footer-link">Terms &amp; Conditions</button>
+        <button onclick="switchView('admin')" class="footer-link inline-flex items-center gap-1.5"><i class="fa-solid fa-lock text-xs text-gold-400"></i> Admin</button>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto pt-6 text-xs flex flex-col sm:flex-row justify-between items-center gap-2 text-center sm:text-left">
+      <p class="text-sage-200">&copy; 2026 Jain Social Work Ltd. All rights reserved.</p>
+      <p class="text-gold-400 font-semibold">Head Branch : Indore, Madhya Pradesh</p>
+    </div>
+    <p class="max-w-3xl mx-auto mt-5 text-center text-[11px] leading-relaxed text-sage-200 bg-sage-900/70 border border-sage-700 rounded-xl px-4 py-3">
+      <i class="fa-solid fa-circle-info text-gold-400 mr-1"></i>
+      <strong class="text-white">Note:</strong> &ldquo;Jain Social Work Ltd.&rdquo; is only a tagged name. It does not represent a registered company, NGO, or any other official organisation.
+    </p>
+  </footer>
+
+  <script>
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const icon = document.getElementById('menuIcon');
+      menu.classList.toggle('hidden');
+      
+      if (menu.classList.contains('hidden')) {
+        icon.className = 'fa-solid fa-bars text-xl';
+      } else {
+        icon.className = 'fa-solid fa-xmark text-xl';
+      }
+    }
+
+    function formatPhoneNumber(input) {
+      let digits = input.value.replace(/\D/g, '');
+      if (digits.length > 10) digits = digits.substring(0, 10);
+      if (digits.length > 5) {
+        input.value = digits.substring(0, 5) + ' ' + digits.substring(5);
+      } else {
+        input.value = digits;
+      }
+    }
+
+    function toggleOtherPurpose(select) {
+      const group = document.getElementById('otherPurposeGroup');
+      const input = document.getElementById('otherPurposeInput');
+      if (select.value === 'other') {
+        group.classList.remove('hidden');
+        input.required = true;
+      } else {
+        group.classList.add('hidden');
+        input.required = false;
+        input.value = '';
+      }
+    }
+
+    const PURPOSE_LABELS = { health: 'Health Camp', talkshow: 'Talk Show', blood: 'Blood Donation Camp', cyber: 'Cyber Awareness', selfdefense: 'Self Defense', other: 'Other' };
+    const STATUS_STYLES = {
+      pending: 'bg-amber-100 text-amber-800 border-amber-200',
+      confirmed: 'bg-emerald-100 text-emerald-800 border-emerald-200',
+      completed: 'bg-sky-100 text-sky-800 border-sky-200',
+      cancelled: 'bg-red-100 text-red-700 border-red-200',
+    };
+
+    function escapeHtml(value) {
+      return String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    }
+
+    function switchView(viewName, targetSection = null) {
+      const views = { home: 'homeView', appointment: 'appointmentView', admin: 'adminView' };
+      Object.entries(views).forEach(([name, id]) => document.getElementById(id).classList.toggle('hidden', name !== viewName));
+
+      const isHome = viewName === 'home';
+      ['navAboutBtn', 'navServicesBtn', 'navTermsBtn', 'navContactBtn'].forEach(id => document.getElementById(id).classList.toggle('hidden', !isHome));
+      document.getElementById('navSubtitle').textContent =
+        viewName === 'appointment' ? 'Appointment Portal' : viewName === 'admin' ? 'Admin Portal' : 'Rejoining Equality';
+
+      const desktopActionBtn = document.getElementById('desktopActionBtn');
+      const mobileActionBtn = document.getElementById('mobileActionBtn');
+      if (isHome) {
+        desktopActionBtn.onclick = () => switchView('appointment');
+        desktopActionBtn.innerHTML = '<i class="fa-regular fa-calendar-check text-sm text-gold-400"></i> <span>Book Appointment</span>';
+        desktopActionBtn.className = "btn-shine bg-sage-700 hover:bg-sage-800 text-white px-5 py-2.5 rounded-full font-bold transition-all shadow-md shadow-sage-800/20 active:scale-95 flex items-center gap-2";
+        mobileActionBtn.onclick = () => { switchView('appointment'); toggleMobileMenu(); };
+        mobileActionBtn.innerHTML = '<i class="fa-regular fa-calendar-check text-gold-400"></i> <span>Book Appointment</span>';
+        mobileActionBtn.className = "w-full bg-sage-700 text-white font-bold py-3.5 rounded-xl text-center shadow-lg flex items-center justify-center gap-2";
+      } else {
+        desktopActionBtn.onclick = () => switchView('home');
+        desktopActionBtn.innerHTML = '<i class="fa-solid fa-arrow-left text-sm text-sage-700"></i> <span>Back to Home</span>';
+        desktopActionBtn.className = "bg-sage-100 hover:bg-sage-200 text-sage-900 px-5 py-2.5 rounded-full font-bold transition flex items-center gap-2 active:scale-95";
+        mobileActionBtn.onclick = () => { switchView('home'); toggleMobileMenu(); };
+        mobileActionBtn.innerHTML = '<i class="fa-solid fa-arrow-left"></i> <span>Back to Home</span>';
+        mobileActionBtn.className = "w-full bg-sage-100 text-sage-900 font-bold py-3.5 rounded-xl text-center flex items-center justify-center gap-2";
+      }
+
+      if (viewName === 'admin') {
+        if (location.hash !== '#admin') history.replaceState(null, '', '#admin');
+        initAdmin();
+      } else if (location.hash === '#admin') {
+        history.replaceState(null, '', location.pathname);
+      }
+
+      if (isHome && targetSection) {
+        setTimeout(() => scrollToSection(targetSection), 50);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function scrollToSection(sectionId) {
+      const el = document.getElementById(sectionId);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    async function handleFormSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
+      const btn = document.getElementById('submitBtn');
+      const errorBanner = document.getElementById('errorBanner');
+      errorBanner.classList.add('hidden');
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('/api/appointments', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(Object.fromEntries(new FormData(form))),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(data.error || 'Could not submit your request. Please try again.');
+        document.getElementById('successBanner').classList.remove('hidden');
+        form.reset();
+        toggleOtherPurpose(document.getElementById('purposeSelect'));
+      } catch (error) {
+        document.getElementById('errorText').textContent = error.message;
+        errorBanner.classList.remove('hidden');
+      } finally {
+        btn.disabled = false;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    /* ---------------- Public Terms ---------------- */
+    function renderPublicTerms(terms) {
+      const list = document.getElementById('termsList');
+      if (!terms.length) {
+        list.innerHTML = '<p class="text-center text-sm text-slate-500 py-6">No terms have been published yet.</p>';
+        return;
+      }
+      list.innerHTML = terms.map((t, i) => `
+        <details class="group rounded-2xl border border-sage-200 bg-sage-50/60 open:bg-white open:shadow-md open:border-gold-400 transition"${i === 0 ? ' open' : ''}>
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-5 sm:px-6 py-4 font-bold text-sage-900">
+            <span class="flex items-center gap-3"><span class="w-8 h-8 rounded-xl bg-sage-700 text-gold-400 flex items-center justify-center text-xs flex-shrink-0">${String(i + 1).padStart(2, '0')}</span> ${escapeHtml(t.title)}</span>
+            <i class="fa-solid fa-chevron-down text-sage-600 text-sm transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="px-5 sm:px-6 pb-5 text-sm text-slate-600 leading-relaxed sm:pl-[4.25rem] whitespace-pre-line">${escapeHtml(t.body)}</div>
+        </details>`).join('');
+      const latest = terms.reduce((max, t) => Math.max(max, new Date(t.updatedAt).getTime()), 0);
+      if (latest) document.getElementById('termsUpdated').textContent = new Date(latest).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+    }
+
+    async function loadPublicTerms() {
+      try {
+        const res = await fetch('/api/terms');
+        if (!res.ok) return; // keep the built-in fallback text
+        renderPublicTerms(await res.json());
+      } catch (e) { /* keep fallback */ }
+    }
+
+    /* ---------------- Admin ---------------- */
+    const admin = { token: sessionStorage.getItem('adminToken'), appointments: [], terms: [], initialized: false };
+
+    function toast(message) {
+      const el = document.getElementById('adminToast');
+      el.textContent = message;
+      el.classList.remove('hidden');
+      clearTimeout(toast.timer);
+      toast.timer = setTimeout(() => el.classList.add('hidden'), 2600);
+    }
+
+    async function adminFetch(url, options = {}) {
+      const res = await fetch(url, {
+        ...options,
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${admin.token}`, ...(options.headers || {}) },
+      });
+      if (res.status === 401) { showAdminLogin(); throw new Error('Your session has expired. Please sign in again.'); }
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || 'Request failed.');
+      return data;
+    }
+
+    function showAdminLogin() {
+      admin.token = null;
+      sessionStorage.removeItem('adminToken');
+      document.getElementById('adminDashboard').classList.add('hidden');
+      document.getElementById('adminLogin').classList.remove('hidden');
+    }
+
+    function showAdminDashboard() {
+      document.getElementById('adminLogin').classList.add('hidden');
+      document.getElementById('adminDashboard').classList.remove('hidden');
+      showAdminTab('appointments');
+      loadAppointments();
+      loadAdminTerms();
+    }
+
+    async function initAdmin() {
+      if (!admin.token) return showAdminLogin();
+      try {
+        const res = await fetch('/api/admin/session', { headers: { Authorization: `Bearer ${admin.token}` } });
+        const data = await res.json();
+        data.valid ? showAdminDashboard() : showAdminLogin();
+      } catch (e) { showAdminLogin(); }
+    }
+
+    async function adminLogin(event) {
+      event.preventDefault();
+      const form = event.target;
+      const errorEl = document.getElementById('loginError');
+      const btn = document.getElementById('loginBtn');
+      errorEl.classList.add('hidden');
+      btn.disabled = true;
+      try {
+        const res = await fetch('/api/admin/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(Object.fromEntries(new FormData(form))),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(data.error || 'Sign in failed.');
+        admin.token = data.token;
+        sessionStorage.setItem('adminToken', data.token);
+        form.reset();
+        showAdminDashboard();
+      } catch (error) {
+        errorEl.textContent = error.message;
+        errorEl.classList.remove('hidden');
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    async function adminLogout() {
+      try { await fetch('/api/admin/logout', { method: 'POST', headers: { Authorization: `Bearer ${admin.token}` } }); } catch (e) {}
+      showAdminLogin();
+      switchView('home');
+    }
+
+    function showAdminTab(tab) {
+      const active = 'bg-sage-700 text-white shadow';
+      const inactive = 'text-sage-800 hover:bg-sage-200';
+      document.getElementById('tabAppointments').className = `px-5 py-2 rounded-full text-sm font-bold transition ${tab === 'appointments' ? active : inactive}`;
+      document.getElementById('tabTerms').className = `px-5 py-2 rounded-full text-sm font-bold transition ${tab === 'terms' ? active : inactive}`;
+      document.getElementById('panelAppointments').classList.toggle('hidden', tab !== 'appointments');
+      document.getElementById('panelTerms').classList.toggle('hidden', tab !== 'terms');
+    }
+
+    async function loadAppointments() {
+      try {
+        admin.appointments = await adminFetch('/api/appointments');
+        renderAppointments();
+      } catch (e) { toast(e.message); }
+    }
+
+    function renderAppointments() {
+      const all = admin.appointments;
+      const count = s => all.filter(a => a.status === s).length;
+      document.getElementById('statTotal').textContent = all.length;
+      document.getElementById('statPending').textContent = count('pending');
+      document.getElementById('statConfirmed').textContent = count('confirmed');
+      document.getElementById('statCompleted').textContent = count('completed');
+
+      const q = document.getElementById('apptSearch').value.trim().toLowerCase();
+      const status = document.getElementById('apptStatusFilter').value;
+      const sort = document.getElementById('apptSort').value;
+
+      let rows = all.filter(a => status === 'all' || a.status === status);
+      if (q) rows = rows.filter(a => [a.name, a.email, a.mobile, PURPOSE_LABELS[a.purpose], a.otherPurpose, a.details].join(' ').toLowerCase().includes(q));
+      const byName = (a, b) => a.name.localeCompare(b.name, 'en', { sensitivity: 'base' });
+      const sorters = {
+        az: byName,
+        za: (a, b) => byName(b, a),
+        newest: (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+        oldest: (a, b) => new Date(a.createdAt) - new Date(b.createdAt),
+        date: (a, b) => a.preferredDate.localeCompare(b.preferredDate),
+      };
+      rows.sort(sorters[sort]);
+
+      const list = document.getElementById('apptList');
+      if (!rows.length) {
+        list.innerHTML = `<div class="text-center py-12 text-slate-500"><i class="fa-regular fa-calendar-xmark text-3xl text-sage-300 mb-3"></i><p class="text-sm font-semibold">${all.length ? 'No appointments match your filters.' : 'No appointment requests yet.'}</p></div>`;
+        return;
+      }
+
+      list.innerHTML = rows.map(a => {
+        const program = a.purpose === 'other' ? `Other: ${a.otherPurpose || '—'}` : (PURPOSE_LABELS[a.purpose] || a.purpose);
+        const prefDate = a.preferredDate ? new Date(a.preferredDate + 'T00:00:00').toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '—';
+        const submitted = new Date(a.createdAt).toLocaleString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+        const actionBtn = (to, label, icon, cls) => a.status === to ? '' :
+          `<button onclick="updateAppointment(${a.id}, '${to}')" class="px-3 py-1.5 rounded-lg text-xs font-bold border transition ${cls}"><i class="fa-solid ${icon} mr-1"></i>${label}</button>`;
+        return `
+        <div class="animate-pop rounded-2xl border border-sage-200 hover:border-gold-400 hover:shadow-md transition p-4 sm:p-5">
+          <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-4">
+            <div class="flex items-start gap-3 min-w-0">
+              <div class="w-11 h-11 rounded-xl bg-sage-700 text-gold-400 flex items-center justify-center font-extrabold flex-shrink-0">${escapeHtml(a.name.charAt(0).toUpperCase())}</div>
+              <div class="min-w-0">
+                <div class="flex flex-wrap items-center gap-2">
+                  <p class="font-extrabold text-sage-900">${escapeHtml(a.name)}</p>
+                  <span class="px-2.5 py-0.5 rounded-full border text-[11px] font-bold uppercase tracking-wider ${STATUS_STYLES[a.status] || ''}">${escapeHtml(a.status)}</span>
+                </div>
+                <p class="text-xs text-slate-500 mt-1 flex flex-wrap gap-x-4 gap-y-1">
+                  <a href="tel:${escapeHtml(a.mobile.replace(/\s/g, ''))}" class="hover:text-sage-800"><i class="fa-solid fa-phone mr-1 text-gold-600"></i>${escapeHtml(a.mobile)}</a>
+                  <a href="mailto:${escapeHtml(a.email)}" class="hover:text-sage-800 break-all"><i class="fa-solid fa-envelope mr-1 text-gold-600"></i>${escapeHtml(a.email)}</a>
+                </p>
+                <div class="mt-3 flex flex-wrap gap-2 text-xs font-semibold">
+                  <span class="px-3 py-1 rounded-full bg-sage-100 text-sage-800"><i class="fa-solid fa-hand-holding-heart mr-1"></i>${escapeHtml(program)}</span>
+                  <span class="px-3 py-1 rounded-full bg-sage-100 text-sage-800"><i class="fa-regular fa-calendar mr-1"></i>${escapeHtml(prefDate)}</span>
+                  <span class="px-3 py-1 rounded-full bg-sage-100 text-sage-800 capitalize"><i class="fa-regular fa-clock mr-1"></i>${escapeHtml(a.preferredTime)}</span>
+                </div>
+                ${a.details ? `<p class="mt-3 text-sm text-slate-600 bg-sage-50 rounded-xl px-3 py-2 whitespace-pre-line">${escapeHtml(a.details)}</p>` : ''}
+                <p class="mt-2 text-[11px] text-slate-400">Requested ${escapeHtml(submitted)}</p>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-2 lg:justify-end lg:max-w-xs">
+              ${actionBtn('confirmed', 'Confirm', 'fa-check', 'bg-emerald-600 hover:bg-emerald-700 text-white border-emerald-600')}
+              ${actionBtn('completed', 'Completed', 'fa-flag-checkered', 'bg-white hover:bg-sky-50 text-sky-700 border-sky-200')}
+              ${actionBtn('pending', 'Mark Pending', 'fa-hourglass-half', 'bg-white hover:bg-amber-50 text-amber-700 border-amber-200')}
+              ${actionBtn('cancelled', 'Cancel', 'fa-ban', 'bg-white hover:bg-red-50 text-red-700 border-red-200')}
+              <button onclick="deleteAppointment(${a.id})" class="px-3 py-1.5 rounded-lg text-xs font-bold border border-slate-200 bg-white hover:bg-slate-100 text-slate-600 transition" title="Delete"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    async function updateAppointment(id, status) {
+      try {
+        const row = await adminFetch(`/api/appointments/${id}`, { method: 'PATCH', body: JSON.stringify({ status }) });
+        admin.appointments = admin.appointments.map(a => a.id === id ? row : a);
+        renderAppointments();
+        toast(`Appointment marked as ${status}.`);
+      } catch (e) { toast(e.message); }
+    }
+
+    async function deleteAppointment(id) {
+      if (!confirm('Delete this appointment request permanently?')) return;
+      try {
+        await adminFetch(`/api/appointments/${id}`, { method: 'DELETE' });
+        admin.appointments = admin.appointments.filter(a => a.id !== id);
+        renderAppointments();
+        toast('Appointment deleted.');
+      } catch (e) { toast(e.message); }
+    }
+
+    async function loadAdminTerms() {
+      try {
+        admin.terms = await adminFetch('/api/terms');
+        renderAdminTerms();
+      } catch (e) { toast(e.message); }
+    }
+
+    function renderAdminTerms() {
+      const list = document.getElementById('adminTermsList');
+      if (!admin.terms.length) {
+        list.innerHTML = '<p class="text-center py-10 text-sm text-slate-500 font-semibold">No terms yet. Add one above.</p>';
+        return;
+      }
+      list.innerHTML = admin.terms.map((t, i) => `
+        <div class="rounded-2xl border border-sage-200 p-4 sm:p-5 hover:border-gold-400 transition">
+          <div class="flex items-start justify-between gap-4">
+            <div class="flex items-start gap-3 min-w-0">
+              <span class="w-8 h-8 rounded-xl bg-sage-700 text-gold-400 flex items-center justify-center text-xs font-bold flex-shrink-0">${String(i + 1).padStart(2, '0')}</span>
+              <div class="min-w-0">
+                <p class="font-extrabold text-sage-900">${escapeHtml(t.title)}</p>
+                <p class="text-sm text-slate-600 mt-1 whitespace-pre-line">${escapeHtml(t.body)}</p>
+              </div>
+            </div>
+            <div class="flex gap-2 flex-shrink-0">
+              <button onclick="editTerm(${t.id})" class="w-9 h-9 rounded-lg border border-sage-200 hover:bg-sage-100 text-sage-800 transition" title="Edit"><i class="fa-solid fa-pen"></i></button>
+              <button onclick="deleteTerm(${t.id})" class="w-9 h-9 rounded-lg border border-red-200 hover:bg-red-50 text-red-700 transition" title="Remove"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </div>
+        </div>`).join('');
+    }
+
+    function editTerm(id) {
+      const term = admin.terms.find(t => t.id === id);
+      if (!term) return;
+      const form = document.getElementById('termForm');
+      form.elements.termId.value = term.id;
+      form.elements.termTitle.value = term.title;
+      form.elements.termBody.value = term.body;
+      document.getElementById('termFormTitle').innerHTML = '<i class="fa-solid fa-pen text-gold-600 mr-1"></i> Edit Term';
+      document.getElementById('termSubmitLabel').textContent = 'Save Changes';
+      document.getElementById('termCancelBtn').classList.remove('hidden');
+      form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      form.elements.termTitle.focus();
+    }
+
+    function resetTermForm() {
+      const form = document.getElementById('termForm');
+      form.reset();
+      form.elements.termId.value = '';
+      document.getElementById('termFormTitle').innerHTML = '<i class="fa-solid fa-plus text-gold-600 mr-1"></i> Add a New Term';
+      document.getElementById('termSubmitLabel').textContent = 'Add Term';
+      document.getElementById('termCancelBtn').classList.add('hidden');
+    }
+
+    async function saveTerm(event) {
+      event.preventDefault();
+      const form = event.target;
+      const id = form.elements.termId.value;
+      const payload = JSON.stringify({ title: form.elements.termTitle.value, body: form.elements.termBody.value });
+      try {
+        await adminFetch(id ? `/api/terms/${id}` : '/api/terms', { method: id ? 'PATCH' : 'POST', body: payload });
+        toast(id ? 'Term updated on the website.' : 'Term added to the website.');
+        resetTermForm();
+        await loadAdminTerms();
+        renderPublicTerms(admin.terms);
+      } catch (e) { toast(e.message); }
+    }
+
+    async function deleteTerm(id) {
+      if (!confirm('Remove this term from the website?')) return;
+      try {
+        await adminFetch(`/api/terms/${id}`, { method: 'DELETE' });
+        admin.terms = admin.terms.filter(t => t.id !== id);
+        renderAdminTerms();
+        renderPublicTerms(admin.terms);
+        toast('Term removed from the website.');
+      } catch (e) { toast(e.message); }
+    }
+
+    /* ---------------- Scroll reveal ---------------- */
+    function initReveal() {
+      const items = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) return items.forEach(el => el.classList.add('is-visible'));
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
+        });
+      }, { threshold: 0.12 });
+      items.forEach((el, i) => { el.style.transitionDelay = `${(i % 3) * 90}ms`; observer.observe(el); });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initReveal();
+      loadPublicTerms();
+      if (location.hash === '#admin') switchView('admin');
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "jain-social-work",
+  "version": "1.0.0",
+  "scripts": {},
+  "type": "module",
+  "dependencies": {
+    "@netlify/database": "^2.0.1",
+    "@netlify/functions": "^6.1.0",
+    "drizzle-orm": "^1.0.0-beta.22"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "drizzle-kit": "^1.0.0-beta.22",
+    "typescript": "^7.0.2"
+  },
+  "private": true
+}
